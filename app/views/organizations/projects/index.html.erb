@@ -1,20 +1,6 @@
-<% content_for :title, "Projects" %>
+<% content_for :title, t("organizations.projects.index.title") %>
 
-<% breadcrumbs = capture do %>
-  <nav aria-label="Breadcrumb">
-    <div class="breadcrumbs text-lg">
-      <ul>
-        <li>
-          <%= link_to organization_projects_path(@organization) do %>
-            <span>Projects</span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </nav>
-<% end %>
-
-<%= render SectionComponent.new(title: breadcrumbs) do |component| %>
+<%= render SectionComponent.new(title: breadcrumbs([t("organizations.projects.index.title")])) do |component| %>
   <% component.with_action_list do %>
     <%= link_to t("shared.actions.new"), new_organization_project_path(@organization), data: { turbo_frame: :modal }, class: "btn btn-primary" %>
   <% end %>
@@ -73,7 +59,7 @@
               </td>
 
               <td data-label="<%= Project.human_attribute_name(:is_active) %>">
-                <%= project.is_active? ? "Yes" : "No" %>
+                <%= project.is_active? ? t("shared.boolean.yes") : t("shared.boolean.no") %>
               </td>
 
               <td>

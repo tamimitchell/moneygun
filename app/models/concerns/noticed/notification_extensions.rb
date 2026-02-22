@@ -6,9 +6,9 @@ module Noticed::NotificationExtensions
   def broadcast_update_to_bell
     broadcast_update_to(
       "notifications_#{recipient.id}",
-      target: "notification_count",
-      partial: "users/notifications/notifications_count",
-      locals: { unread: recipient.unseen_notifications_count }
+      targets: ".notification-badge",
+      partial: "shared/notification_badge",
+      locals: { count: recipient.unseen_notifications_count }
     )
   end
 

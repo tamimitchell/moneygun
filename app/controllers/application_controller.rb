@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   private
 
   def default_authenticated_path
-    root_path
+    organizations_path
   end
 
   def set_current_organizations

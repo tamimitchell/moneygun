@@ -23,6 +23,6 @@ export default class extends Controller {
       outputFormat: 'number'
     }
 
-    new AutoNumeric(this.element, autoNumericOptions)
+    this.element.autoNumeric = new AutoNumeric(this.element, autoNumericOptions)
   }
 }

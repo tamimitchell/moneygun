@@ -1,7 +1,9 @@
 <% content_for :title, t("organizations.new.title") %>
 
-<%= modal do %>
-  <%= render SectionComponent.new(title: t("organizations.new.title")) do |component| %>
+<%= render SectionComponent.new(title: t("organizations.new.title")) do |component| %>
+  <% if @show_form %>
     <%= render "form", organization: @organization %>
+  <% else %>
+    <%= render "website_form" %>
   <% end %>
 <% end %>

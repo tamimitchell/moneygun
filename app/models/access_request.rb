@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class AccessRequest < ApplicationRecord
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id type status created_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[organization user completed_by]
+  end
+
   belongs_to :organization
   belongs_to :user
   # rubocop:disable Rails/InverseOf
@@ -18,8 +26,6 @@ class AccessRequest < ApplicationRecord
       organization.memberships.find_or_create_by!(user:)
       after_approve
     end
-  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique => e
-    raise ActiveRecord::Rollback, e.message
   end
 
   def reject!(**)

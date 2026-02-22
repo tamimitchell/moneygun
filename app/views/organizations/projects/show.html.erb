@@ -1,29 +1,9 @@
-<% content_for :title, "Project" %>
+<% content_for :title, t("organizations.projects.show.title") %>
 
-<% breadcrumbs = capture do %>
-  <nav aria-label="Breadcrumb">
-    <div class="breadcrumbs text-lg">
-      <ul>
-        <li>
-          <%= link_to organization_projects_path(@organization) do %>
-            <span>Projects</span>
-          <% end %>
-        </li>
-
-        <li aria-current="page">
-          <%= link_to organization_project_path(@organization, @project) do %>
-            <span class="font-medium"><%= @project.name %></span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </nav>
-<% end %>
-
-<%= render SectionComponent.new(title: breadcrumbs) do |component| %>
+<%= render SectionComponent.new(title: breadcrumbs([t("organizations.projects.index.title"), organization_projects_path(@organization)], [@project.name])) do |component| %>
   <% component.with_action_list do %>
-    <%= link_to "Edit", [:edit, @organization, @project], data: { turbo_frame: :modal }, class: "btn btn-primary btn-sm" %>
-    <%= button_to "Destroy", [@organization, @project], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-error btn-sm" %>
+    <%= link_to t("shared.actions.edit"), [:edit, @organization, @project], data: { turbo_frame: :modal }, class: "btn btn-primary btn-sm" %>
+    <%= button_to t("shared.actions.destroy"), [@organization, @project], method: :delete, data: { turbo_confirm: t("shared.actions.confirm") }, class: "btn btn-error btn-sm" %>
   <% end %>
 
   <%= render @project %>

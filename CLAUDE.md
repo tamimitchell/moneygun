@@ -78,6 +78,7 @@ end
 ### Routes
 
 Split into `config/routes/`:
+
 - `users.rb` - User account routes
 - `organizations.rb` - Org-scoped resources
 - `admin.rb` - Avo admin panel routes

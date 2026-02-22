@@ -5,7 +5,7 @@ class Organizations::SentInvitationsController < Organizations::BaseController
 
   def index
     authorize Membership, :create?
-    @pagy, @invitations = pagy(@organization.sent_invitations.pending)
+    @pagy, @invitations = pagy(@organization.sent_invitations.pending.includes(:user))
   end
 
   def new

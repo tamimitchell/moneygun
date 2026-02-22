@@ -25,7 +25,7 @@ class MembershipInvitation
   def create_access_request(user)
     membership = user.memberships.find_by(organization: organization)
     if membership.present?
-      errors.add(:base, "#{email} is already a member of this organization.")
+      errors.add(:base, :already_member, email: email)
     else
       invitation = organization.sent_invitations.create(user:)
       return true if invitation.persisted?

@@ -37,14 +37,14 @@ Deploy to production with [Kamal](https://kamal-deploy.org/). See the [Deploymen
 
 ## Documentation
 
-| Guide | Description |
-|-------|-------------|
-| [Getting Started](docs/getting-started.md) | Installation and setup |
-| [Architecture](docs/architecture.md) | Multi-tenancy, models, patterns |
-| [Stripe Integration](docs/stripe-integration.md) | Payments and subscriptions |
-| [Development](docs/development.md) | Testing, linting, conventions |
-| [Deployment](docs/deployment.md) | Production deployment guides |
-| [Linting](docs/linting.md) | Code quality tools |
+| Guide                                            | Description                     |
+| ------------------------------------------------ | ------------------------------- |
+| [Getting Started](docs/getting-started.md)       | Installation and setup          |
+| [Architecture](docs/architecture.md)             | Multi-tenancy, models, patterns |
+| [Stripe Integration](docs/stripe-integration.md) | Payments and subscriptions      |
+| [Development](docs/development.md)               | Testing, linting, conventions   |
+| [Deployment](docs/deployment.md)                 | Production deployment guides    |
+| [Linting](docs/linting.md)                       | Code quality tools              |
 
 ## Video Tutorials
 
@@ -69,29 +69,29 @@ Deploy to production with [Kamal](https://kamal-deploy.org/). See the [Deploymen
 
 Moneygun is a lightweight starting point. [Bullet Train](https://bullettrain.co/) and [Jumpstart Pro](https://jumpstartrails.com/) are more full-featured frameworks with ongoing support.
 
-| Feature | Moneygun | Bullet Train | Jumpstart Pro |
-|---------|----------|--------------|---------------|
-| **Price** | Free | Free | $249-749/yr |
-| **License** | MIT | MIT | Commercial |
-| **Multi-tenancy** | Route-based | Team-based | Multiple strategies |
-| **Authentication** | Devise + OAuth | Devise + OAuth | Devise + OAuth |
-| **Two-factor auth** | - | Yes | Yes |
-| **Authorization** | Pundit | CanCanCan | Pundit |
-| **Payments** | Stripe (Pay gem) | Stripe (Pay gem) | Stripe, Paddle, Lemon Squeezy, Braintree (Pay gem) |
-| **Teams & Invitations** | Yes | Yes | Yes |
-| **Admin panel** | Avo | Avo | Madmin |
-| **REST API** | - | Yes (OpenAPI 3.1) | Yes |
-| **Outgoing webhooks** | - | Yes | - |
-| **Code generation** | Custom scaffold | Super Scaffolding | Rails scaffold |
-| **Mobile apps (iOS/Android)** | Coming soon | - | Hotwire Native ($199-599/yr) |
-| **Notifications** | Noticed | ActionMailer + ActionCable | Noticed |
-| **Audit logs** | - | Yes | - |
-| **User impersonation** | Yes (Masquerade) | - | Yes (Pretender) |
-| **Feature flags** | Flipper | - | - |
-| **I18n** | Partial (EN, FR) | Yes | Yes |
-| **UI framework** | Tailwind + daisyUI | Tailwind (custom theme) | Tailwind + daisyUI |
-| **Background jobs** | GoodJob | Sidekiq | SolidQueue / Sidekiq |
-| **Official support** | Community | Yes | Yes |
+| Feature                       | Moneygun           | Bullet Train               | Jumpstart Pro                                      |
+| ----------------------------- | ------------------ | -------------------------- | -------------------------------------------------- |
+| **Price**                     | Free               | Free                       | $249-749/yr                                        |
+| **License**                   | MIT                | MIT                        | Commercial                                         |
+| **Multi-tenancy**             | Route-based        | Team-based                 | Multiple strategies                                |
+| **Authentication**            | Devise + OAuth     | Devise + OAuth             | Devise + OAuth                                     |
+| **Two-factor auth**           | -                  | Yes                        | Yes                                                |
+| **Authorization**             | Pundit             | CanCanCan                  | Pundit                                             |
+| **Payments**                  | Stripe (Pay gem)   | Stripe (Pay gem)           | Stripe, Paddle, Lemon Squeezy, Braintree (Pay gem) |
+| **Teams & Invitations**       | Yes                | Yes                        | Yes                                                |
+| **Admin panel**               | Avo                | Avo                        | Madmin                                             |
+| **REST API**                  | -                  | Yes (OpenAPI 3.1)          | Yes                                                |
+| **Outgoing webhooks**         | -                  | Yes                        | -                                                  |
+| **Code generation**           | Custom scaffold    | Super Scaffolding          | Rails scaffold                                     |
+| **Mobile apps (iOS/Android)** | Coming soon        | -                          | Hotwire Native ($199-599/yr)                       |
+| **Notifications**             | Noticed            | ActionMailer + ActionCable | Noticed                                            |
+| **Audit logs**                | -                  | Yes                        | -                                                  |
+| **User impersonation**        | Yes (Masquerade)   | -                          | Yes (Pretender)                                    |
+| **Feature flags**             | Flipper            | -                          | -                                                  |
+| **I18n**                      | Partial (EN, FR)   | Yes                        | Yes                                                |
+| **UI framework**              | Tailwind + daisyUI | Tailwind (custom theme)    | Tailwind + daisyUI                                 |
+| **Background jobs**           | GoodJob            | Sidekiq                    | SolidQueue / Sidekiq                               |
+| **Official support**          | Community          | Yes                        | Yes                                                |
 
 **Choose Moneygun** if you want a free, simple foundation you fully own and understand — no framework abstractions, no subscription, just plain Rails you can read top to bottom.
 

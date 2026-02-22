@@ -1,5 +1,12 @@
 ---
 en:
+  activemodel:
+    errors:
+      models:
+        membership_invitation:
+          attributes:
+            base:
+              already_member: '%{email} is already a member of this organization.'
   activerecord:
     attributes:
       membership:
@@ -12,27 +19,47 @@ en:
         privacy_settings:
           private:
             description_text: Only invited users can join
-            display_text: "🔒 Private"
+            display_text: '🔒 Private'
           public:
             description_text: Anyone can join
-            display_text: "🌍 Public"
+            display_text: '🌍 Public'
           restricted:
             description_text: People must submit an application to be approved to join
-            display_text: "📩 Restricted"
+            display_text: '📩 Restricted'
+        website: Website
       project:
         attachments: Attachments
+        body: Body
         budget: Budget
         category: Category
+        color: Color
+        completion_percentage: Completion
+        contact_email: Contact email
+        cost: Cost
+        cover_image: Cover image
         description: Description
         document: Document
         due_date: Due date
+        gallery: Gallery
         is_active: Active
         name: Name
+        phone_number: Phone number
+        price: Price
         priority: Priority
         scheduled_at: Scheduled at
+        search_keywords: Search keywords
+        secret_token: Secret token
         start_date: Start date
+        start_time: Start time
         status: Status
         tags: Tags
+        website_url: Website URL
+    errors:
+      models:
+        organization:
+          attributes:
+            privacy_setting:
+              requires_logo: requires logo to be discoverable for restricted and public organizations
     models:
       membership: Member
       organization: Organization
@@ -54,17 +81,34 @@ en:
       unconfirmed: You have to confirm your email address before continuing.
     mailer:
       confirmation_instructions:
+        action: Confirm my account
+        greeting: Welcome %{email}!
+        instruction: 'You can confirm your account email through the link below:'
         subject: Confirmation instructions
       email_changed:
-        subject: Email Changed
+        email_being_changed: We're contacting you to notify you that your email is being changed to %{email}.
+        email_changed: We're contacting you to notify you that your email has been changed to %{email}.
+        greeting: Hello %{email}!
+        subject: Email changed
       password_change:
-        subject: Password Changed
+        greeting: Hello %{email}!
+        message: We're contacting you to notify you that your password has been changed.
+        subject: Password changed
       reset_password_instructions:
+        action: Change my password
+        greeting: Hello %{email}!
+        ignore: If you didn't request this, please ignore this email.
+        instruction: Someone has requested a link to change your password. You can do this through the link below.
+        no_change: Your password won't change until you access the link above and create a new one.
         subject: Reset password instructions
       unlock_instructions:
+        action: Unlock my account
+        greeting: Hello %{email}!
+        instruction: 'Click the link below to unlock your account:'
+        message: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
         subject: Unlock instructions
     masquerade:
-      back: "⚠ Stop impersonating"
+      back: '⚠ Stop impersonating'
     omniauth_callbacks:
       failure: Something went wrong. Please try again
       success: ''
@@ -104,7 +148,7 @@ en:
           password_confirmation_label: Confirm new password
           password_confirmation_placeholder: Confirm new password
           password_label: New password
-          password_minimum: "(%{count} characters minimum)"
+          password_minimum: '(%{count} characters minimum)'
           password_placeholder: Enter new password
           submit: Change my password
           title: Change your password
@@ -130,7 +174,7 @@ en:
           password_confirmation_placeholder: Confirm new password
           password_help: Leave blank if you don't want to change it
           password_label: Password
-          password_minimum: "%{count} characters minimum"
+          password_minimum: '%{count} characters minimum'
           password_placeholder: New password
           pending_confirmation: 'Currently waiting confirmation for: %{email}'
           submit: Update
@@ -141,7 +185,7 @@ en:
           password_confirmation_label: Password confirmation
           password_confirmation_placeholder: Confirm your password
           password_label: Password
-          password_minimum: "(%{count} characters minimum)"
+          password_minimum: '(%{count} characters minimum)'
           password_placeholder: Create a password
           submit: Sign up
           title: Sign up
@@ -181,13 +225,17 @@ en:
       not_locked: was not locked
       not_saved:
         one: '1 error prohibited this %{resource} from being saved:'
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        other: '%{count} errors prohibited this %{resource} from being saved:'
     models:
       membership:
         attributes:
           base:
             cannot_change_role_if_only_admin: Role cannot be changed because this is the only admin.
             cannot_demote_owner_from_admin: Organization owner cannot be demoted from admin role.
+  home:
+    index:
+      subtitle: Dashboard, highlights, and actions coming soon
+      title: Home
   invitations:
     accept:
       success: Invitation accepted
@@ -200,7 +248,7 @@ en:
       approve: Approve
       reject: Reject
     index:
-      title: "⬇️ Waitlist"
+      title: '⬇️ Waitlist'
     reject:
       success: Join request rejected
     success:
@@ -217,7 +265,7 @@ en:
 
         If you have any questions, please contact the person who invited you.
       someone: Someone
-      subject: "%{invitor_email} invited you to join %{organization_name}"
+      subject: '%{invitor_email} invited you to join %{organization_name}'
     request_accepted_email:
       subject: Welcome to %{organization_name}
     request_rejected_email:
@@ -229,7 +277,7 @@ en:
           message: You've been invited to join %{organization_name}
       join_request_received_notifier:
         notification:
-          message: "%{user_name} has requested to join %{organization_name}"
+          message: '%{user_name} has requested to join %{organization_name}'
       removal_notifier:
         notification:
           message: You have been removed from %{organization_name}
@@ -242,6 +290,13 @@ en:
       role_changed_notifier:
         notification:
           message: Your role in %{organization_name} has been changed to %{role}
+    organization:
+      ownership_transferred_notifier:
+        notification:
+          message: You are now the owner of %{organization_name}
+  organization_mailer:
+    ownership_transferred:
+      subject: You are now the owner of %{organization_name}
   organizations:
     dashboard:
       index:
@@ -263,6 +318,8 @@ en:
         failed_to_remove_user_from_organization: Failed to remove user from organization
         user_removed_from_organization: User removed from organization
         you_have_left_the_organization: You have left the organization
+      edit:
+        title: Edit %{email} roles
       index:
         title: Members
       new:
@@ -276,16 +333,24 @@ en:
         success: Project created
       destroy:
         success: Project destroyed
+      edit:
+        title: Edit project
+      index:
+        title: Projects
+      new:
+        title: New project
+      show:
+        title: Project
       update:
         success: Project updated
     sent_invitations:
       create:
-        success: "%{email} invited"
+        success: '%{email} invited'
       destroy:
         success: Invitation cancelled
       index:
         cancel_invitation: Cancel invitation
-        title: "⬆️ Invites"
+        title: '⬆️ Invites'
     show:
       title: Home
     subscriptions:
@@ -304,7 +369,7 @@ en:
         title: Manage subscription
         you_will_lose_access_in: You will lose access in %{distance_of_time_in_words}
       pricing:
-        cancel_security: "🛡️ Cancel anytime. Secured by Stripe."
+        cancel_security: '🛡️ Cancel anytime. Secured by Stripe.'
         current_plan: Current plan
         purchase: Buy
         save_yearly: Best value
@@ -315,10 +380,16 @@ en:
         title: Transfer ownership
       update:
         success: Ownership transferred
+    website_form:
+      continue: Continue
+      continue_loading: Fetching details...
+      label: Website URL
+      skip: Enter details manually
+      subtitle: Enter your organization's website and we'll fill in the details for you.
   public:
     organizations:
       index:
-        title: "🌎 Discover"
+        title: '🌎 Discover'
       show:
         actions:
           accept_invitation: Accept invitation
@@ -327,6 +398,28 @@ en:
           open: Open
           reject_invitation: Reject invitation
           request_to_join: Request access
+  pwa:
+    how_to_install: How to install
+    install_app: Install app
+    instructions:
+      android_chrome:
+        step_1: Tap the menu (⋮) in Chrome
+        step_2: Tap "Add to home screen"
+      android_other:
+        step_1: Open this page in Chrome
+        step_2: Tap the menu (⋮) and select "Add to home screen"
+      desktop_chromium:
+        step_1: Click the install icon (⊕) in the address bar
+        step_2: Click "Install"
+      generic: Open this site in Chrome or Safari for the best install experience.
+      ios_other: Open this page in Safari to install it as an app.
+      ios_safari:
+        step_1: Tap the Share button (↑)
+        step_2: Scroll down and tap "Add to home screen"
+        step_3: Tap "Add"
+      macos_safari:
+        step_1: Click File in the menu bar
+        step_2: Click "Add to Dock"
   routes:
     memberships: members
     organizations: organizations
@@ -336,16 +429,26 @@ en:
       title: Search
   shared:
     actions:
+      back: Back
       cancel: Cancel
       confirm: Are you sure?
       confirm_action: Confirm
-      copied: "✅ Copied!"
-      copy: "📋 Copy"
+      continue: Continue
+      copied: '✅ Copied!'
+      copy: '📋 Copy'
       create: Create
       destroy: Destroy
       edit: Edit
       new: New
+      save_changes: Save changes
       show: Show
+      skip: Skip
+    boolean:
+      'no': 'No'
+      'yes': 'Yes'
+    empty_state:
+      subtitle: Come back soon
+      title: Nothing here yet
     errors:
       not_authorized: You are not authorized to perform this action.
       not_subscribed: You need to subscribe to access this page.
@@ -354,8 +457,11 @@ en:
       dismiss: Dismiss
     footer:
       all_rights_reserved: All rights reserved.
+      brand_assets: Brand assets
+    language_picker:
+      label: Language
     modal:
-      close: Close
+      close: Close dialog
     navigation:
       edit_profile: Edit profile
       home: Home
@@ -373,18 +479,31 @@ en:
       org_navigation: Organization navigation
       search: Search... ⌘K
     skip_to_content: Skip to main content
+    time:
+      ago: '%{time_ago} ago'
+  simple_form:
+    dropzone:
+      hint: or click to browse
+      message: Drop files here
   static:
     index:
+      description: Multi-tenant SaaS boilerplate for Rails
       title: Home
     pricing:
+      description: View %{site_name} pricing plans and features
       title: Pricing
     privacy:
+      description: '%{site_name} privacy policy'
       title: Privacy
     refunds:
+      description: '%{site_name} refund policy'
       title: Refunds
     terms:
+      description: '%{site_name} terms of service'
       title: Terms
   users:
+    edit:
+      title: Edit profile
     identities:
       destroy:
         success: Account disconnected successfully.
@@ -413,14 +532,14 @@ en:
     organizations:
       received_invitations:
         index:
-          title: "⬇️ Invitations"
+          title: '⬇️ Invitations'
         show:
           title: Invitation
       sent_join_requests:
         destroy:
           success: Join request revoked
         index:
-          title: "⬆️ Waitlisted"
+          title: '⬆️ Waitlisted'
     referrals:
       index:
         clicks: Referral Link Performance

@@ -19,6 +19,8 @@ module Organization::Transfer
       membership.update!(role: Membership.roles[:admin])
       update!(owner: new_owner)
     end
+
+    OrganizationMailer.ownership_transferred(new_owner, self).deliver_later
   rescue StandardError => e
     Rails.logger.error("Ownership transfer failed: #{e.message}")
     false

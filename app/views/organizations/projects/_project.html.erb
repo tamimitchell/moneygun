@@ -86,7 +86,7 @@
       <%= Project.human_attribute_name(:is_active) %>:
     </strong>
 
-    <p><%= project.is_active? ? "Yes" : "No" %></p>
+    <p><%= project.is_active? ? t("shared.boolean.yes") : t("shared.boolean.no") %></p>
   </div>
 
   <% if project.tags.present? %>

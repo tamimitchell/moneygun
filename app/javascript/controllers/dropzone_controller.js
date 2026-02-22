@@ -4,6 +4,7 @@ import Dropzone from 'dropzone'
 
 export default class extends Controller {
   #initializing = false
+  #activeUploads = 0
 
   static values = {
     url: String,
@@ -105,14 +106,28 @@ export default class extends Controller {
   }
 
   #upload(file) {
-    new Uploader(file, this.dropZone).start()
+    this.#activeUploads++
+    this.#toggleSubmit()
+    new Uploader(file, this.dropZone, () => {
+      this.#activeUploads--
+      this.#toggleSubmit()
+    }).start()
+  }
+
+  #toggleSubmit() {
+    const form = this.element.closest('form')
+    if (!form) return
+    const btn = form.querySelector('[type="submit"]')
+    if (!btn) return
+    btn.disabled = this.#activeUploads > 0
   }
 }
 
 class Uploader {
-  constructor(file, dropZone) {
+  constructor(file, dropZone, onComplete) {
     this.file = file
     this.dropZone = dropZone
+    this.onComplete = onComplete
   }
 
   start() {
@@ -164,11 +179,13 @@ class Uploader {
     this.file.status = Dropzone.SUCCESS
     this.dropZone.emit('success', this.file)
     this.dropZone.emit('complete', this.file)
+    if (this.onComplete) this.onComplete()
   }
 
   #emitDropzoneError(error) {
     this.file.status = Dropzone.ERROR
     this.dropZone.emit('error', this.file, error)
     this.dropZone.emit('complete', this.file)
+    if (this.onComplete) this.onComplete()
   }
 }

@@ -1,25 +1,27 @@
 <section class="space-y-4 mx-auto <%= width_class %> @container">
-  <% if title.present? || title_content.present? || action_list.present? %>
-    <div class="flex justify-between gap-4 flex-wrap">
-      <% if title_content.present? %>
-        <div class="flex-1 min-w-0">
-          <%= title_content %>
+  <% if title.present? || title_content.present? || action_list.present? || subtitle.present? %>
+    <header class="space-y-1">
+      <% if title.present? || title_content.present? || action_list.present? %>
+        <div class="flex justify-between gap-4 flex-wrap">
+          <div class="flex-1 min-w-0">
+            <% if title_content.present? %>
+              <%= title_content %>
+            <% elsif title.present? %>
+              <%= helpers.breadcrumbs([title]) %>
+            <% end %>
+          </div>
+          <% if action_list.present? %>
+            <div class="whitespace-nowrap flex items-center gap-1">
+              <%= action_list %>
+            </div>
+          <% end %>
         </div>
-      <% elsif title.present? %>
-        <h1 class="font-semibold text-2xl @3xl:text-3xl min-w-0">
-          <%= title %>
-        </h1>
       <% end %>
-      <% if action_list.present? %>
-        <div class="whitespace-nowrap flex items-center gap-1">
-          <%= action_list %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
 
-  <% if subtitle %>
-    <%= simple_format(subtitle, class: "text-sm text-base-content/60") %>
+      <% if subtitle %>
+        <p class="text-sm text-base-content/60"><%= subtitle %></p>
+      <% end %>
+    </header>
   <% end %>
 
   <div class="space-y-4">

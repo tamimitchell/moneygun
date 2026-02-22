@@ -70,7 +70,7 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user2
     second_membership.member!
     patch organization_membership_url(@organization, second_membership), params: { membership: { role: "admin" } }
-    assert_redirected_to root_url
+    assert_redirected_to organizations_url
     assert second_membership.reload.member?
   end
 

@@ -43,11 +43,11 @@ Add Stripe price IDs to `config/settings.yml`:
 ```yaml
 shared:
   plans:
-    - id: price_xxx  # Monthly price ID
+    - id: price_xxx # Monthly price ID
       unit_amount: 9900
       currency: USD
       interval: month
-    - id: price_yyy  # Yearly price ID
+    - id: price_yyy # Yearly price ID
       unit_amount: 99900
       currency: USD
       interval: year
@@ -77,6 +77,7 @@ Create a webhook endpoint in Stripe Dashboard:
   - `checkout.session.completed`
 
 Quick setup links with pre-filled events:
+
 - [Development webhook](https://dashboard.stripe.com/test/webhooks/create?events=charge.succeeded%2Ccharge.refunded%2Cpayment_intent.succeeded%2Cinvoice.upcoming%2Cinvoice.payment_action_required%2Ccustomer.subscription.created%2Ccustomer.subscription.updated%2Ccustomer.subscription.deleted%2Ccustomer.subscription.trial_will_end%2Ccustomer.updated%2Ccustomer.deleted%2Cpayment_method.attached%2Cpayment_method.updated%2Cpayment_method.automatically_updated%2Cpayment_method.detached%2Caccount.updated%2Ccheckout.session.completed%2Ccheckout.session.async_payment_succeeded)
 - [Production webhook](https://dashboard.stripe.com/webhooks/create?events=charge.succeeded%2Ccharge.refunded%2Cpayment_intent.succeeded%2Cinvoice.upcoming%2Cinvoice.payment_action_required%2Ccustomer.subscription.created%2Ccustomer.subscription.updated%2Ccustomer.subscription.deleted%2Ccustomer.subscription.trial_will_end%2Ccustomer.updated%2Ccustomer.deleted%2Cpayment_method.attached%2Cpayment_method.updated%2Cpayment_method.automatically_updated%2Cpayment_method.detached%2Caccount.updated%2Ccheckout.session.completed%2Ccheckout.session.async_payment_succeeded)
 
@@ -112,6 +113,7 @@ subscription_status_label(organization)
 ```
 
 Returns:
+
 - Red indicator - No subscription
 - Orange indicator - Subscription cancelled (on grace period)
 - Green indicator - Active subscription

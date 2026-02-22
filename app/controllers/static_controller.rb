@@ -2,7 +2,6 @@
 
 class StaticController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :redirect_if_authenticated, only: %i[index pricing]
 
   def index; end
 
@@ -13,10 +12,4 @@ class StaticController < ApplicationController
   def privacy; end
 
   def refunds; end
-
-  private
-
-  def redirect_if_authenticated
-    redirect_to organizations_path if current_user
-  end
 end

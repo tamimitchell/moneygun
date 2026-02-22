@@ -1,7 +1,7 @@
-<% content_for :title, "Editing project" %>
+<% content_for :title, t("organizations.projects.edit.title") %>
 
-<%= modal do %>
-  <%= render SectionComponent.new(title: "Editing project") do |component| %>
+<%= modal title: t("organizations.projects.edit.title") do %>
+  <%= render SectionComponent.new do |component| %>
     <%= render "form", project: @project %>
   <% end %>
 <% end %>

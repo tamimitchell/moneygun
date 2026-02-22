@@ -1,0 +1,9 @@
+<%= form_with url: new_organization_path, method: :get, class: "space-y-4" do |f| %>
+  <%= f.label :website, t("organizations.new.website_label"), class: "label-text" %>
+  <%= f.text_field :website, placeholder: "https://example.com", class: "input input-bordered w-full", autofocus: true, autocomplete: "url" %>
+
+  <div class="flex justify-between items-center">
+    <%= link_to t("shared.actions.skip"), new_organization_path(skip: true), class: "link link-hover text-sm" %>
+    <%= f.submit t("shared.actions.continue"), class: "btn btn-primary" %>
+  </div>
+<% end %>

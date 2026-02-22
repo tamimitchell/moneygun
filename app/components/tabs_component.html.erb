@@ -1,36 +1,33 @@
-<div
-  class="
-    max-lg:px-4
-    border-b border-base-content/20 w-full overflow-x-auto
-    [scrollbar-width:none] [-ms-overflow-style:none]
-    [&::-webkit-scrollbar]:hidden
-  "
->
-  <nav class="flex space-x-4">
-    <% tabs.each do |tab| %>
-      <% if tab[:condition].nil? || tab[:condition] %>
-        <%= link_to tab[:path], class: tab_classes(tab[:key]) do %>
-          <% if tab[:content] %>
-            <%= tab[:content] %>
-          <% else %>
-            <% if tab[:icon] %>
-              <% if tab[:icon].match?(/svg/) %>
-                <%= helpers.inline_svg_tag tab[:icon], class: "size-6 w-6 h-6" %>
-              <% elsif tab[:icon].start_with?("http") || tab[:icon].match?(/\.(png|jpg|webp|avif|gif)$/) %>
-                <%= image_tag tab[:icon], class: "size-6 w-6 h-6 rounded" %>
-              <% else %>
-                <%= tag.span tab[:icon] %>
+<div class="relative">
+  <div
+    class="
+      px-4
+      <%= "border-b border-base-content/20" if @border %> w-full overflow-x-auto
+      [scrollbar-width:none] [-ms-overflow-style:none]
+      [&::-webkit-scrollbar]:hidden
+    "
+    data-controller="scroll-to-active"
+  >
+    <nav class="flex space-x-4 after:content-[''] after:shrink-0 after:w-4" role="tablist" aria-label="<%= t("shared.navigation.organizations") %>">
+      <% tabs.each do |tab| %>
+        <% if tab[:condition].nil? || tab[:condition] %>
+          <% is_active = active_tab == tab[:key] %>
+          <%= link_to tab[:path], class: tab_classes(tab[:key]), role: "tab", "aria-selected": is_active, "aria-current": ("page" if is_active) do %>
+            <% if tab[:content] %>
+              <%= tab[:content] %>
+            <% else %>
+              <%= helpers.resolve_icon(tab[:icon], classes: "size-6") %>
+              <%= tab[:label] %>
+              <% if tab[:badge_count] && tab[:badge_count] > 0 %>
+                <span class="badge badge-sm <%= tab[:badge_class] || "badge-warning" %>"><%= tab[:badge_count] %></span>
               <% end %>
-            <% end %>
-            <%= tab[:label] %>
-            <% if tab[:badge_count] && tab[:badge_count] > 0 %>
-              <span class="badge badge-sm badge-warning">
-                <%= tab[:badge_count] %>
-              </span>
             <% end %>
           <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </nav>
+    </nav>
+  </div>
+
+  <%# Fade indicator for scroll %>
+  <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-base-100 to-transparent pointer-events-none" aria-hidden="true"></div>
 </div>

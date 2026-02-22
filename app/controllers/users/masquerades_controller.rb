@@ -8,7 +8,7 @@ class Users::MasqueradesController < Devise::MasqueradesController
   protected
 
   def authorize_admin
-    redirect_to root_path unless current_user.admin?
+    redirect_to default_authenticated_path unless current_user.admin?
   end
 
   def after_back_masquerade_path_for(_resource)

@@ -6,14 +6,14 @@ class SectionComponentTest < ViewComponent::TestCase
   def test_component_renders_with_title
     render_inline(SectionComponent.new(title: "Page Title"))
 
-    assert_selector "h1", text: "Page Title"
+    assert_text "Page Title"
     assert_selector "section.space-y-4"
   end
 
   def test_component_renders_with_subtitle
     render_inline(SectionComponent.new(title: "Page Title", subtitle: "Page subtitle"))
 
-    assert_selector "h1", text: "Page Title"
+    assert_text "Page Title"
     assert_selector "p", text: "Page subtitle"
   end
 

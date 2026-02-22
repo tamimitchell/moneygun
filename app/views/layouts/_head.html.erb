@@ -2,16 +2,13 @@
 
 <%= viewport_meta_tag %>
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#13161d" media="(prefers-color-scheme: dark)">
 
-<meta
-  name="application-name"
-  content="<%= Rails.application.config_for(:settings).dig(:site, :name) %>"
->
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="application-name" content="<%= Rails.application.config_for(:settings).dig(:site, :name) %>">
 
 <meta name="mobile-web-app-capable" content="yes">
 
@@ -26,11 +23,8 @@
 <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
 <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-<link rel="icon" href="/icon.png" type="image/png">
-
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
-
-<link rel="apple-touch-icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <%# Includes all stylesheet files in app/assets/stylesheets %>
 

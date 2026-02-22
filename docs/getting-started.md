@@ -66,6 +66,7 @@ bin/dev
 ```
 
 This starts:
+
 - Rails server
 - CSS build watcher
 - Stripe webhook listener

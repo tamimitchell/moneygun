@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_21_135317) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_21_145914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,6 +25,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_135317) do
     t.index ["organization_id"], name: "index_access_requests_on_organization_id"
     t.index ["user_id", "organization_id"], name: "index_access_requests_on_user_id_and_organization_id", unique: true
     t.index ["user_id"], name: "index_access_requests_on_user_id"
+  end
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
@@ -252,6 +262,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_135317) do
     t.bigint "owner_id", null: false
     t.string "privacy_setting", default: "private", null: false
     t.datetime "updated_at", null: false
+    t.string "website"
     t.index ["name"], name: "index_organizations_on_name"
     t.index ["owner_id"], name: "index_organizations_on_owner_id"
   end
@@ -355,18 +366,28 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_135317) do
   create_table "projects", force: :cascade do |t|
     t.decimal "budget", precision: 10, scale: 2
     t.string "category"
+    t.string "color"
+    t.integer "completion_percentage"
+    t.string "contact_email"
+    t.decimal "cost", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.text "description"
     t.date "due_date"
     t.boolean "is_active", default: true
     t.string "name", null: false
     t.bigint "organization_id", null: false
+    t.string "phone_number"
+    t.decimal "price", precision: 10, scale: 2
     t.string "priority", default: "medium"
     t.datetime "scheduled_at"
+    t.string "search_keywords"
+    t.string "secret_token"
     t.date "start_date"
+    t.time "start_time"
     t.string "status", default: "planning"
     t.text "tags", default: [], array: true
     t.datetime "updated_at", null: false
+    t.string "website_url"
     t.index ["name", "organization_id"], name: "index_projects_on_name_and_organization_id", unique: true
     t.index ["organization_id"], name: "index_projects_on_organization_id"
   end

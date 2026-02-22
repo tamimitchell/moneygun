@@ -42,7 +42,7 @@ class OrganizationsControllerTest < ActionDispatch::IntegrationTest
     # does not show organization if user is not a member
     organization = organizations(:two)
     get organization_url(organization)
-    assert_redirected_to root_path
+    assert_redirected_to organizations_path
   end
 
   test "should get edit" do
@@ -60,7 +60,7 @@ class OrganizationsControllerTest < ActionDispatch::IntegrationTest
   test "should not update organization he does not belong to" do
     organization = organizations(:two)
     patch organization_url(organization), params: { organization: { name: organization.name } }
-    assert_redirected_to root_url
+    assert_redirected_to organizations_url
     assert_equal organization.name, organization.reload.name
     assert_equal I18n.t("shared.errors.not_authorized"), flash[:alert]
   end

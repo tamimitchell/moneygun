@@ -17,6 +17,16 @@ class Users::NotificationsController < ApplicationController
   private
 
   def mark_as_seen
-    @notifications.unseen.mark_as_seen
+    unseen = @notifications.unseen
+    return if unseen.none?
+
+    unseen.mark_as_seen
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      "notifications_#{current_user.id}",
+      targets: ".notification-badge",
+      partial: "shared/notification_badge",
+      locals: { count: current_user.notifications.unseen.count }
+    )
   end
 end

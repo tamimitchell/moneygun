@@ -1,0 +1,19 @@
+<% content_for :title, t("users.edit.title") %>
+
+<%= modal title: t("users.edit.title"), size: :narrow, close_on_submit: false do %>
+  <%= simple_form_for @user, url: user_path, method: :patch, html: { class: "space-y-4" } do |f| %>
+    <%= render "shared/errors", object: @user %>
+
+    <%= f.input :avatar,
+                as: :dropzone,
+                input_html: { accept: "image/png, image/jpeg, image/gif" } %>
+
+    <%= f.input :name,
+                input_html: {
+                  value: @user.name,
+                  autocomplete: "name"
+                } %>
+
+    <div class="flex justify-end"><%= f.button :submit, t("shared.actions.save_changes"), class: "btn btn-primary" %></div>
+  <% end %>
+<% end %>

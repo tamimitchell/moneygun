@@ -12,6 +12,7 @@ class Organization < ApplicationRecord
   has_many :projects, dependent: :destroy
 
   validates :name, presence: true
+  validates :website, format: { with: %r{\Ahttps?://.+\z}i }, allow_blank: true
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name]

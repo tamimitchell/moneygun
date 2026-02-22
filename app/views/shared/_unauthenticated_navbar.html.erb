@@ -1,15 +1,11 @@
-<nav class="flex justify-between px-6 py-2 bg-base-100">
+<nav class="flex justify-between px-6 py-2 bg-base-100" aria-label="<%= t("shared.navigation.home") %>">
   <%# left %>
   <div class="flex items-center gap-2">
     <div>
       <%= link_to root_path, class: "no-underline" do %>
-        <%= image_tag "logo.png", class: "size-8 lg:hidden dark:invert" %>
-        <%= image_tag "logo-long.png", class: "w-auto h-8 hidden lg:block dark:invert" %>
+        <%= inline_svg_tag "logo.svg", class: "size-8 lg:hidden", aria: { label: Rails.application.config_for(:settings).dig(:site, :name) } %>
+        <%= inline_svg_tag "logo-wordmark.svg", class: "w-auto h-8 hidden lg:block", aria: { label: Rails.application.config_for(:settings).dig(:site, :name) } %>
       <% end %>
-    </div>
-
-    <div class="menu menu-horizontal">
-      <%= nav_link t("static.pricing.title"), pricing_path %>
     </div>
   </div>
 

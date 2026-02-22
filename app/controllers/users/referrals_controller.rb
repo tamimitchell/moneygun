@@ -8,6 +8,6 @@ class Users::ReferralsController < ApplicationController
       { title: t(".referrals"), subtitle: t(".referrals_description"), value: @referral_code.referrals.count, type: :number },
       { title: t(".completed"), subtitle: t(".completed_description"), value: @referral_code.referrals.completed.count, type: :number }
     ]
-    @referrals = current_user.referrals.order(created_at: :desc)
+    @referrals = current_user.referrals.includes(:referee).order(created_at: :desc)
   end
 end

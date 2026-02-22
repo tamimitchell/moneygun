@@ -9,7 +9,7 @@ class SearchController < ApplicationController
 
                        Organization.where(id: user_org_ids)
                                    .or(Organization.where(id: discoverable_ids))
-                                   .where("name ILIKE ?", "%#{query}%")
+                                   .where("name ILIKE ?", "%#{Organization.sanitize_sql_like(query)}%")
                      else
                        Organization.none
                      end

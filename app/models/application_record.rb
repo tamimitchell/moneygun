@@ -5,5 +5,5 @@ class ApplicationRecord < ActiveRecord::Base
   include ObfuscatesId
 
   IMAGE_CONTENT_TYPES = ["image/webp", "image/png", "image/jpeg", "image/gif", "image/avif"].freeze
-  VIDEO_CONTENT_TYPES = ["video/mp4", "video/quicktime", "video/x-msvideo"].freeze
+  VIDEO_CONTENT_TYPES = ["video/mp4", "video/quicktime", "video/x-msvideo", "video/webm"].freeze
 end

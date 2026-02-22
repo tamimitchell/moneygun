@@ -2,17 +2,16 @@ import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   connect() {
+    this.previouslyFocusedElement = document.activeElement
     this.open()
-    // needed because ESC key does not trigger close event
-    this.element.addEventListener('close', this.enableBodyScroll.bind(this))
+    this.boundHandleClose = this.handleClose.bind(this)
+    this.element.addEventListener('close', this.boundHandleClose)
   }
 
   disconnect() {
-    this.element.removeEventListener('close', this.enableBodyScroll.bind(this))
+    this.element.removeEventListener('close', this.boundHandleClose)
   }
 
-  // hide modal on successful form submission
-  // data-action="turbo:submit-end->turbo-modal#hideOnSubmit"
   hideOnSubmit(e) {
     if (e.detail.success) {
       this.close()
@@ -23,23 +22,38 @@ export default class extends Controller {
     this.element.showModal()
     document.body.classList.add('overflow-hidden')
 
-    // Remove focus from auto-focused element (usually close button)
-    document.activeElement.blur()
+    const focusable = this.element.querySelector(
+      'input:not([type="hidden"]):not([disabled]), textarea:not([disabled]), select:not([disabled]), a[href], button:not([disabled])'
+    )
+    if (focusable) {
+      focusable.focus()
+    }
   }
 
   close() {
     this.element.close()
-    const frame = document.getElementById('modal')
-    frame.removeAttribute('src')
-    frame.innerHTML = ''
   }
 
-  enableBodyScroll() {
+  handleClose() {
     document.body.classList.remove('overflow-hidden')
+
+    const frame = document.getElementById('modal')
+    if (frame) {
+      frame.removeAttribute('src')
+      frame.innerHTML = ''
+    }
+
+    if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
+      this.previouslyFocusedElement.focus()
+    }
+  }
+
+  trackMousedown(event) {
+    this.mousedownTarget = event.target
   }
 
   clickOutside(event) {
-    if (event.target === this.element) {
+    if (event.target === this.element && this.mousedownTarget === this.element) {
       this.close()
     }
   }

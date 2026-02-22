@@ -12,15 +12,13 @@
       <div class="table-responsive">
         <table>
           <tbody id="notifications">
-            <% @notifications.each do |notification| %>
-              <%= render "users/notifications/notification", notification: notification %>
-            <% end %>
+            <%= render partial: "users/notifications/notification", collection: @notifications %>
           </tbody>
         </table>
       </div>
       <%= render "shared/pagination", pagy: @pagy %>
     <% else %>
-      <%= render EmptyStateComponent.new %>
+      <%= render EmptyStateComponent.new(icon: "svg/bell.svg") %>
     <% end %>
   <% end %>
 <% end %>

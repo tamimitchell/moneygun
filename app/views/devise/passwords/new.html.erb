@@ -1,3 +1,5 @@
+<% content_for :title, t("devise.views.passwords.new.title") %>
+<% content_for :robots, "noindex" %>
 <%= render SectionComponent.new(title: t("devise.views.passwords.new.title"), full_width: false) do %>
   <%= simple_form_for resource, as: resource_name, url: password_path(resource_name), method: :post, html: { class: "space-y-4" } do |f| %>
     <%= render "shared/errors", object: resource %>
@@ -12,7 +14,7 @@
                 } %>
 
     <div class="pt-2">
-      <%= f.button :submit, t("devise.views.passwords.new.submit"), class: "btn-primary btn-block" %>
+      <%= f.button :submit, t("devise.views.passwords.new.submit"), class: "btn btn-primary btn-block" %>
     </div>
   <% end %>
 

@@ -1,10 +1,8 @@
 <% content_for :title, t("organizations.edit.title") %>
 
-<%= render SectionComponent.new(title: t("organizations.edit.title"), full_width: false) do |component| %>
+<%= render SectionComponent.new(title: t("organizations.edit.title")) do |component| %>
   <%= render "form", organization: @organization %>
-<% end %>
 
-<%= render SectionComponent.new(full_width: false) do %>
   <div class="divider"></div>
 
   <div class="flex items-center gap-2">

@@ -4,18 +4,20 @@
   aria-label="<%= t("shared.sidebar.global_navigation") %>"
 >
   <%# App logo — branding %>
-  <%= link_to root_path, class: "btn btn-ghost btn-square", title: t("shared.navigation.home") do %>
-    <%= image_tag "logo.png", class: "size-8", aria: { hidden: true } %>
+  <%= link_to default_authenticated_path, class: "btn btn-ghost btn-square", title: t("shared.navigation.home") do %>
+    <%= inline_svg_tag "logo.svg", class: "size-8", aria: { hidden: true } %>
   <% end %>
 
   <%# Search %>
-  <%= link_to search_path, class: "btn btn-ghost btn-square", title: t("shared.sidebar.search"), aria: { label: t("search.index.title") }, data: { turbo_frame: :modal, controller: "click", action: "keydown.meta+k@window->click#click keydown.ctrl+k@window->click#click" } do %>
-    <%= inline_svg_tag "svg/magnifying-glass.svg", class: "size-5", aria: { hidden: true } %>
+  <% if Flipper.enabled?(:search) %>
+    <%= link_to search_path, class: "btn btn-ghost btn-square", title: t("shared.sidebar.search"), aria: { label: t("search.index.title") }, data: { turbo_frame: :modal, controller: "click", action: "keydown.meta+k@window->click#click keydown.ctrl+k@window->click#click" } do %>
+      <%= inline_svg_tag "svg/magnifying-glass.svg", class: "size-5", aria: { hidden: true } %>
+    <% end %>
   <% end %>
 
   <%# Organizations %>
   <%= link_to organizations_path, class: "btn btn-ghost btn-square", title: t("shared.navigation.organizations") do %>
-    <%= inline_svg_tag "svg/compass.svg", class: "size-5", aria: { hidden: true } %>
+    <%= inline_svg_tag Organization::ICON, class: "size-5", aria: { hidden: true } %>
   <% end %>
 
   <%# Notifications %>

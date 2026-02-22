@@ -36,3 +36,6 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
   strip()
   document.addEventListener('turbo:render', strip)
 }
+
+import 'trix'
+import '@rails/actiontext'

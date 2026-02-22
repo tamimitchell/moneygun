@@ -31,7 +31,7 @@ export default class extends Controller {
   }
 
   isInteractiveElement(element) {
-    // Check for common interactive elements, those with tabindex, and specific elements like dialog and details
-    return element.closest('a, button, input, select, textarea dialog, details, summary, [role="menu"], [role="button"]')
+    if (!element.isConnected) return true
+    return element.closest('a, button, input, select, textarea, dialog, details, summary, [role="menu"], [role="button"]')
   }
 }

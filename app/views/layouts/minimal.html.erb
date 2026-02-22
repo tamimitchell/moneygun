@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en" class="h-full bg-base-100 text-base-content">
+<html lang="<%= I18n.locale %>" class="h-full bg-base-100 text-base-content">
   <head><%= render "layouts/head" %></head>
 
   <body class="flex h-dvh">
-    <main class="flex-grow overflow-y-auto flex flex-col"><%= yield %></main>
+    <main id="main-content" class="flex-grow overflow-y-auto flex flex-col"><%= yield %></main>
   </body>
 </html>

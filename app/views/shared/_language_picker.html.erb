@@ -1,4 +1,5 @@
 <% if I18n.available_locales.count > 1 %>
-  <% options = I18n.available_locales.map { |locale| [locale_to_flag(locale), url_for(locale: locale)] } %>
-  <%= select_tag :locale, options_for_select(options, url_for(locale: I18n.locale)), onchange: "window.location.href=this.value", class: "select select-bordered w-full" %>
+  <% options = I18n.available_locales.map { |locale| ["#{locale_to_flag(locale)} #{locale_to_name(locale)}", url_for(locale: locale)] } %>
+  <label for="language-picker" class="sr-only"><%= t("shared.language_picker.label") %></label>
+  <%= select_tag :locale, options_for_select(options, url_for(locale: I18n.locale)), id: "language-picker", onchange: "window.location.href=this.value", class: "select select-bordered w-full" %>
 <% end %>

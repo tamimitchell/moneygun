@@ -94,7 +94,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
       patch organization_project_url(@organization, @project), params: { project: { name: "changed" } }
     end
     assert_response :redirect
-    assert_redirected_to root_url
+    assert_redirected_to organizations_url
     assert_match I18n.t("shared.errors.not_authorized"), flash[:alert]
   end
 

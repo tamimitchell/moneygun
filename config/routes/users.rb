@@ -13,7 +13,7 @@ devise_scope :user do
   post "/users/invitation/accept", to: "users/invitation_acceptances#create", as: :accept_user_invitation_create
 end
 
-resource :user, only: %i[show], path: I18n.t("routes.user") do
+resource :user, only: %i[show edit update], path: I18n.t("routes.user") do
   scope module: :users do
     resources :notifications, only: %i[index]
     resources :identities

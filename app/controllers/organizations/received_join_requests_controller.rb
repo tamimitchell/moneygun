@@ -5,7 +5,7 @@ class Organizations::ReceivedJoinRequestsController < Organizations::BaseControl
 
   def index
     authorize Membership, :create?
-    @pagy, @join_requests = pagy(@organization.received_join_requests.pending)
+    @pagy, @join_requests = pagy(@organization.received_join_requests.pending.includes(:user))
   end
 
   def approve
