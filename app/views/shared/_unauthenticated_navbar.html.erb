@@ -3,8 +3,8 @@
   <div class="flex items-center gap-2">
     <div>
       <%= link_to root_path, class: "no-underline" do %>
-        <%= inline_svg_tag "logo.svg", class: "size-8 lg:hidden", aria: { label: Rails.application.config_for(:settings).dig(:site, :name) } %>
-        <%= inline_svg_tag "logo-wordmark.svg", class: "w-auto h-8 hidden lg:block", aria: { label: Rails.application.config_for(:settings).dig(:site, :name) } %>
+        <%= inline_svg_tag "svg/logo.svg", class: "size-8 lg:hidden", aria: { label: Rails.application.config_for(:settings).dig(:site, :name) } %>
+        <%= inline_svg_tag "svg/logo-wordmark.svg", class: "w-auto h-8 hidden lg:block", aria: { label: Rails.application.config_for(:settings).dig(:site, :name) } %>
       <% end %>
     </div>
   </div>

@@ -5,7 +5,7 @@
       <li>
         <div class="flex items-center justify-between gap-2">
           <%= active_link_to default_authenticated_path, class: "flex-1 flex items-center gap-3 min-w-0", class_active: "menu-active", active: :exact do %>
-            <%= image_tag "logo.png", class: "size-8 shrink-0 -ml-1 -mr-2" %>
+            <%= inline_svg_tag "svg/logo.svg", class: "size-8 shrink-0 -ml-1 -mr-2" %>
 
             <span class="[[data-expanded=false]_&]:hidden truncate min-w-0">
               <%= Rails.application.config_for(:settings).dig(:site, :name) %>
