@@ -725,7 +725,6 @@ DEPENDENCIES
   tailwindcss-rails
   thruster
   turbo-rails
-  turbo_power (~> 0.7.0)
   tzinfo-data
   view_component
   web-console

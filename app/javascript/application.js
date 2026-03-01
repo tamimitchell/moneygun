@@ -1,8 +1,10 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import { Turbo } from '@hotwired/turbo'
 import 'controllers'
-import TurboPower from 'turbo_power'
-TurboPower.initialize(Turbo.StreamActions)
+// Custom turbo stream action: redirect_to
+Turbo.StreamActions.redirect_to = function () {
+  Turbo.visit(this.target)
+}
 
 import 'lexxy'
 import '@rails/actiontext'
@@ -36,6 +38,3 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
   strip()
   document.addEventListener('turbo:render', strip)
 }
-
-import 'trix'
-import '@rails/actiontext'
