@@ -10,9 +10,5 @@ class CreateReferVisits < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-
-    add_column :refer_referral_codes, :referrals_count, :integer, default: 0
-    add_column :refer_referral_codes, :visits_count, :integer, default: 0
-    add_column :refer_referrals, :completed_at, :datetime
   end
 end

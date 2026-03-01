@@ -5,6 +5,7 @@ class CreateReferReferrals < ActiveRecord::Migration[6.1]
       t.belongs_to :referrer, polymorphic: true, null: false
       t.belongs_to :referee, polymorphic: true, null: false
       t.belongs_to :referral_code
+      t.datetime :completed_at
 
       t.timestamps
     end
